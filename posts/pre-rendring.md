@@ -1,5 +1,5 @@
 ---
-title: 'Two Forms of Pre-rendering'
+title: 'プリレンダリングの2つの形態'
 date: '2020-01-01'
 ---
 
