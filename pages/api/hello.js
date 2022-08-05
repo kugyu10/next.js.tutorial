@@ -1,6 +1,6 @@
 export default function handler(req, res) {
   const query = req.query;
-  console.log(query);
+  //console.log(query);
 
   let answer;
   if ( !Object.keys(query).length ) {
