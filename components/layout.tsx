@@ -3,12 +3,14 @@ import Image from 'next/image';
 import styles from './layout.module.css';
 import utilStyles from '../styles/utils.module.css';
 import Link from 'next/link';
+import React from 'react';
 
 const name = "魚田 惇（Uota Jun）";
-export const siteTitle = 'Next.jsチュートリアルサイト';
+export const siteTitle = 'Webエンジニア魚田惇ポートフォリオ';
 
-export default function Layout({ children, home }) {
-  return (<div className={styles.container}>
+export default function Layout({ children, home }: {children: React.ReactNode, home?: boolean}) {
+  return (
+  <div className={styles.container}>
     <Head>
       <link rel="icon" href="/favicon.ico" />
       <meta name="description" content="next.jsチュートリアルで個人Webサイト作成を学習中です。" />

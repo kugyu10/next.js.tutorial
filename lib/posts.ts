@@ -24,22 +24,18 @@ export function getSortedPostsData() {
     // データとIDを紐付ける
     return {
       id,
-      ...matterResult.data,
-    };
-  });
-
-
-  //日付順にposts並び替え
-  return allPostsData.sort(({ date: a }, { date: b }) => {
-    if (a < b) {
-      return 1;
-    } else if (a > b) {
-      return -1;
-
-    } else {
-      return 0;
+      ...(matterResult.data as { date: string; title: string })
     }
-  });
+  })
+  //日付順にposts並び替え
+  return allPostsData.sort((a, b) => {
+    if (a.date < b.date) {
+      return 1;
+    } else {
+      return -1;
+    }
+  })
+
 }
 
 //posts配下にあるファイル名をすべて取得して返す。例：
@@ -63,12 +59,12 @@ export function getAllPostIds() {
       params: {
         id: fileName.replace(/\.md$/, ''),
       },
-    };
-  });
+    }
+  })
 }
 
 //`id`で与えられたpostの中身を取得する
-export async function getPostData(id) {
+export async function getPostData(id: string) {
   const fullPath = path.join(postsDirectory, `${id}.md`);
   const fileContents = fs.readFileSync(fullPath, 'utf8');
 
@@ -83,8 +79,8 @@ export async function getPostData(id) {
 
   //idとデータを結合する
   return {
-     id,
-     contentHtml,
-     ...matterResult.data,
-  };
+    id,
+    contentHtml,
+    ...(matterResult.data as { date: string; title: string })
+  }
 }
